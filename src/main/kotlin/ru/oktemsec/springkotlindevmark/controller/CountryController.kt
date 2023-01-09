@@ -14,7 +14,7 @@ class CountryController(
     private val countryService: CountryService,
 ) {
     @GetMapping
-    fun getAll(): List<CountryDto> = countryService.getAll()
+    fun getAll(@RequestParam("page") pageIndex: Int): List<CountryDto> = countryService.getAll(pageIndex)
 
     @GetMapping("/find")
     @ResponseBody
