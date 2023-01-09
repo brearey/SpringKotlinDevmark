@@ -9,12 +9,14 @@ import ru.oktemsec.springkotlindevmark.service.CountryService
 @Service
 class CountryServiceImpl(private val countryRepository: CountryRepository) : CountryService {
     override fun getAll(): List<CountryDto> {
-        return countryRepository.findAll().map{
-            CountryDto(
-                id = it.id,
-                name = it.name,
-                population = it.population,
-            )
+        return countryRepository.findByOrderByName().map{
+            it.toDto()
+        }
+    }
+
+    override fun getByName(start: String): List<CountryDto> {
+        return countryRepository.findByNameStartsWithOrderByName(start).map {
+            it.toDto()
         }
     }
 
