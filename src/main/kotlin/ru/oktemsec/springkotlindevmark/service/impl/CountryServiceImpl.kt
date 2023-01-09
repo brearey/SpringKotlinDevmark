@@ -1,6 +1,7 @@
 package ru.oktemsec.springkotlindevmark.service.impl
 
 import org.springframework.data.domain.PageRequest
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import ru.oktemsec.springkotlindevmark.dto.CountryDto
 import ru.oktemsec.springkotlindevmark.entity.CountryEntity
@@ -16,10 +17,16 @@ class CountryServiceImpl(private val countryRepository: CountryRepository) : Cou
         }
     }
 
-    override fun getByName(start: String): List<CountryDto> {
-        return countryRepository.findByNameStartsWithOrderByName(start).map {
+    override fun search(prefix: String): List<CountryDto> {
+        return countryRepository.findByNameStartsWithOrderByName(prefix).map {
             it.toDto()
         }
+    }
+
+    override fun getById(id: Int): CountryDto {
+        return countryRepository.findByIdOrNull(id)
+            ?.toDto()
+            ?:throw RuntimeException("Country not found")
     }
 
     private fun CountryEntity.toDto(): CountryDto =

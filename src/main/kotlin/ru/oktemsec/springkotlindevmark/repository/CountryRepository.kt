@@ -7,5 +7,5 @@ import ru.oktemsec.springkotlindevmark.entity.CountryEntity
 interface CountryRepository: CrudRepository<CountryEntity, Int> {
     fun findByOrderByName(pageable: Pageable): List<CountryEntity>
 
-    fun findByNameStartsWithOrderByName(start: String): List<CountryEntity>
+    fun findByNameStartsWithOrderByName(prefix: String): List<CountryEntity>
 }
