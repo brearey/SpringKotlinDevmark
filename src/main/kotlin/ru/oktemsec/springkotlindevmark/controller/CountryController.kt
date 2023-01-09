@@ -19,7 +19,7 @@ class CountryController(
 
     @GetMapping("/search")
     @ResponseBody
-    fun searchCountries(@RequestParam("text") searchText: String): List<CountryDto> = countryService.search(searchText)
+    fun searchCountries(@RequestParam("prefix") prefix: String): List<CountryDto> = countryService.search(prefix)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable("id") id: Int): CountryDto = countryService.getById(id)
