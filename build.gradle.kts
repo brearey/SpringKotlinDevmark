@@ -25,6 +25,12 @@ dependencies {
     //runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    //Auth
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.ldap:spring-ldap-core")
+    implementation("org.springframework.security:spring-security-ldap")
+    implementation("com.unboundid:unboundid-ldapsdk")
 }
 
 tasks.withType<KotlinCompile> {
